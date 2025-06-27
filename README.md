@@ -1,112 +1,122 @@
 day1~day4 정리 및 복습(지피티와 강의노트)
+# day1~day4 정리 및 복습(지피티와 강의노트)
 
-가상환경 설정
+## 가상환경 설정
 
-*프로젝트마다  가상환경 설정을 해야하는 이유는?
-
+### *프로젝트마다  가상환경 설정을 해야하는 이유는?
 (안전하게 프로젝트를 관리)
 
-:>상황
+**:>상황**
 
-a 프로젝트 - Django 3.2 사용
-b 프로젝트 - Django 5.2 사용
+a 프로젝트 - Django 3.2 사용  
+b 프로젝트 - Django 5.2 사용  
 
 => 같은 환경에서 둘 다 설치하면 충돌 or 버그
 
-:>만약에 가상 환경 없이 pip install 을 한다면?
--> 내 컴퓨터 전체에 Django를 설치 
--> 어떤 프로젝트에서든 무조건  현재 설치한 버전의
-Django가 사용 될 수 있음
+**:>만약에 가상 환경 없이 pip install 을 한다면?**  
+-> 내 컴퓨터 전체에 Django를 설치  
+-> 어떤 프로젝트에서든 무조건  현재 설치한 버전의  
+Django가 사용 될 수 있음  
 -> 버전 충돌 에러 위험 증가
 
-:> 협업과 배포가 쉬워짐
-pyproject.toml이나 requirements.txt만 공유 하면
-동료들도 poetry install 만으로 같은 환경을 바로 만들 수 있음
+**:> 협업과 배포가 쉬워짐**  
+pyproject.toml이나 requirements.txt만 공유 하면  
+동료들도 poetry install 만으로 같은 환경을 바로 만들 수 있음  
 서버에서도 똑같이 세팅 할 수 있으니 배포시 안정적
 
+---
 
-poetry init 입력
+## poetry init 입력
 
-결과:>
-현재 폴더를 Poetry 프로젝트로 등록하면서,
+**결과:>**  
+현재 폴더를 Poetry 프로젝트로 등록하면서,  
 pyproject.toml 이라는 설정 파일을 만들어주는 명령어.
 
-pyproject.toml은 뭐에 쓰이냐면?
-현재 프로젝트에 어떤 패키지(예: django,request등)을 쓰는지
-어떤 파이썬 버전이 필요한지,
+**pyproject.toml은 뭐에 쓰이냐면?**  
+현재 프로젝트에 어떤 패키지(예: django,request등)을 쓰는지  
+어떤 파이썬 버전이 필요한지,  
 프로젝트 이름 , 버전, 설명 등이 쓰임
 
+---
 
+## poetry add django 입력
 
-
-poetry add django 입력
-
-
-결과 :>
-프로젝트 전용 가상환경 생성 후
-그 가상환경에 Django 설치됨
+**결과 :>**  
+프로젝트 전용 가상환경 생성 후  
+그 가상환경에 Django 설치됨  
 pyproject.toml에  사용한 버전 까지 등록됨
 
+---
 
-poetry shell 입력
+## poetry shell 입력
 
 -> poetry가 만든 가상환경에 진입하는 명령어
 
+---
 
+## django-admin startproject config . 입력
 
-django-admin startproject config . 입력
+**결과:>** config폴더 + manage.py 만들어짐
 
-결과:> config폴더 + manage.py 만들어짐
-
--> 장고 프로젝트 생성 시 사용 (중요)
+-> 장고 프로젝트 생성 시 사용 (중요)  
 -> Django 기본 프로젝트 구조를 세팅 해줌
 
-. = 현재 위치에 프로젝트를 생성 하시오
-config = 프로젝트 설정 파일들이 들어갈 폴더명
-*_*config = 관례적으로 자주 쓰는 이름일뿐 원한다면 
+. = 현재 위치에 프로젝트를 생성 하시오  
+config = 프로젝트 설정 파일들이 들어갈 폴더명  
+*_config = 관례적으로 자주 쓰는 이름일뿐 원한다면  
 폴더명 바꿔도된다고함,,
 
+---
 
-개발 서버 실행
-1.django-admin runserver
-
+## 개발 서버 실행  
+1.django-admin runserver  
 2.python manage.py runserver 을 더 많이쓴다고함
 
+---
 
-python manage.py create superuser -> 관리자 계정 생성
+## python manage.py create superuser -> 관리자 계정 생성
 
-python manage.py makemigrations
--변경사항을 기록함 
+---
+
+## python manage.py makemigrations  
+-변경사항을 기록함  
 -> 결과 : migrations/0001_initial.py 같은 파일 생성됨
 
+---
 
-python manage.py migrate
-->변경된 사항을 db에 반영
+## python manage.py migrate  
+->변경된 사항을 db에 반영  
 ->db.sqllite3에 반영됨 
 
-python manage.py startapp feeds
+---
+
+## python manage.py startapp feeds  
 : 새로운 앱(작은 기능 단위)을 생성
 
-앱 : 기능 단위 예) 뉴스,카페,쇼핑,회원 
+**앱 : 기능 단위 예) 뉴스,카페,쇼핑,회원**  
 
-결과:> 여러 기본 파일 들이 만들어짐
+**결과:> 여러 기본 파일 들이 만들어짐**
 
-models.py : 데이터베이스 테이블 정의
-views.py : 사용자가 요쳥한 기능 처리
-admin.py : Django 관리자 페이지 설정
-apps.py : 이 앱의 설정 정보
-migrations/  : 데이터베이스 이력 저장 폴더
+- models.py : 데이터베이스 테이블 정의  
+- views.py : 사용자가 요쳥한 기능 처리  
+- admin.py : Django 관리자 페이지 설정  
+- apps.py : 이 앱의 설정 정보  
+- migrations/  : 데이터베이스 이력 저장 폴더
 
+---
 
-해야 할 일:>
+## 해야 할 일:>  
 settings.py 에 새로만든 앱 등록하기
 
+```python
 #config/settings.py 
 
 INSTALLED_APPS = [
 	…
 	‘feeds’, #추가하기
 ]
+
+---
 
 URL Dispatcher이란?
 사용자가 웹사이트에 입력한 주소 URL을 urls.py에서 
@@ -134,6 +144,8 @@ urls.py 에서 path(“feeds/”, views.show_feed)로
 가서 views.py의 def show_feed(request):
 	return HttpResponse(“show feed”)
 와 연결됨
+
+---
 
 Model 이란?
 
@@ -176,6 +188,8 @@ python manage.py migrate
 :)
 makemigrations로 만든 파일을 실제로 데이터베이스에 적용
 
+---
+
 ORM과 쿼리셋
 
 ORM : 객체(object)와(relational database)를 자동으로 연결해주는 기술
@@ -193,14 +207,17 @@ ORM : 객체(object)와(relational database)를 자동으로 연결해주는 기
 .exists( ) 	존재 여부 확인
 
 예시:>
-	1. 책 전체 가져오기
+	
+ 1. 책 전체 가져오기
 Book.objects.all( )
 
-	2. 동동걸 이 작가인 책 만 가져오기
+2. 동동걸 이 작가인 책 만 가져오기
 Book.objects.filter(author=‘동동걸’)
-	3. 제목이 코딩초보자의기록 인 책 1개 가져오기
+
+3. 제목이 코딩초보자의기록 인 책 1개 가져오기
 Book.objects.get(title=‘코딩초보자의기록’)
-	4.책 제목을 가나다순 정렬
+
+4.책 제목을 가나다순 정렬
 Book.objects.order_by(‘title’)
 
 
